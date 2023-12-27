@@ -1,0 +1,18 @@
+{
+    "all": [
+        {
+            "name": "Data Lake: Save Application Item",
+            "status": "ENABLED",
+            "event": "application[saveItem]",
+            "function": "saveApplicationChangeToDataLake",
+            "command": "application_item_datalake[saveItem]"
+        },
+        {
+            "name": "Data Lake: Read Application Item",
+            "status": "ENABLED",
+            "event": "application_item_datalake[saveItem]",
+            "function": "readApplicationItem",
+            "command": "application_end_point/custom_field"
+        }
+    ]
+}

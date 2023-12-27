@@ -1,0 +1,13 @@
+<?php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Mission\Impossible\Command\GetMissions;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+$app->add(new GetMissions());
+
+// ... register commands
+
+$application->run();
