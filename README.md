@@ -22,13 +22,13 @@ make run-tests
 
 Get All Missions In Project
 ```
-get::missions
+ bin/console get::missions
 ```
 Get missions triggered by this mission
 ```
-get::missions:next <mission name>
+bin/console get::missions:next <mission name>
 ```
 Get missions that triggered this mission
 ```
-get::missions:prev <mission name>
+bin/console get::missions:prev <mission name>
 ```
