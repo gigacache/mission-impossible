@@ -7,7 +7,7 @@ use Mission\Impossible\Model\MissionCollection;
 
 class Parser
 {
-    protected string $filePath = '/Users/dan/src/mission-impossible/resource/event-data.json';
+    protected string $filePath = '/Users/dan/src/mission-impossible/resource/mission-data.json';
 
     public static function create()
     {

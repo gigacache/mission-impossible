@@ -1,0 +1,74 @@
+{
+    "all": [
+        {
+            "name": "Data Lake: Save Application Item",
+            "status": "ENABLED",
+            "event": "application[saveItem]",
+            "function": "saveApplicationChangeToDataLake",
+            "command": "application_item_datalake[saveItem]"
+        },
+        {
+            "name": "Data Lake: Read Application Item To Stock Api",
+            "status": "ENABLED",
+            "event": "application_item_datalake[saveItem]",
+            "function": "readApplicationItemToStockApi",
+            "command": "stock_application_end_point/add-stock"
+        },
+        {
+            "name": "Data Lake: Read Application Item To Pim Api",
+            "status": "ENABLED",
+            "event": "application_item_datalake[saveItem]",
+            "function": "readApplicationItemToPimApi",
+            "command": "pim_application_end_point/save-item"
+        },
+        {
+            "name": "Data Lake: Read Application Item To Marketing Insights",
+            "status": "ENABLED",
+            "event": "application_item_datalake[saveItem]",
+            "function": "readApplicationItemToMarketingInsights",
+            "command": "marketing_application_end_point/dump-sftp"
+        },
+        {
+            "name": "Stock Api: Save Stock To Website",
+            "status": "ENABLED",
+            "event": "stock_application_end_point/add-stock",
+            "function": "saveStockToWebsite",
+            "command": "website_application_end_point/save-stock"
+        },
+        {
+            "name": "Stock Api: Save Stock To Supplier",
+            "status": "ENABLED",
+            "event": "stock_application_end_point/add-stock",
+            "function": "saveStockToSupplier",
+            "command": "supplier_application_end_point/update-stock"
+        },
+        {
+            "name": "Deals Api: Update Stock",
+            "status": "ENABLED",
+            "event": "stock_application_end_point/add-stock",
+            "function": "updateStockDeals",
+            "command": "deals_application_end_point/update"
+        },
+        {
+            "name": "Pim Api: Refresh UI",
+            "status": "ENABLED",
+            "event": "pim_application_end_point/save-item",
+            "function": "refreshPimUi",
+            "command": "pim_application_end_point/refresh-ui"
+        },
+        {
+            "name": "Website: Refresh UI",
+            "status": "ENABLED",
+            "event": "pim_application_end_point/refresh-ui",
+            "function": "refreshWebUi",
+            "command": "web_application_end_point/refresh"
+        },
+        {
+            "name": "Website: Update Stock",
+            "status": "ENABLED",
+            "event": "deals_application_end_point/update",
+            "function": "updateWebsiteStock",
+            "command": "website_application_end_point/update-stock"
+        }
+    ]
+}
