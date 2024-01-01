@@ -1,13 +1,17 @@
 #!/usr/bin/env php
 <?php
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Mission\Impossible\Command\GetMissions;
+use Mission\Impossible\Command\NextMissions;
+use Mission\Impossible\Command\PrevMissions;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
 $application->add(new GetMissions());
+$application->add(new NextMissions());
+$application->add(new PrevMissions());
 
 // ... register commands
 

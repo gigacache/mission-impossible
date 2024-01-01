@@ -16,6 +16,11 @@ class MissionCollection
         $this->missions[$mission->getName()] = $mission;
     }
 
+    public function remove(Mission $mission)
+    {
+        unset($this->missions[$mission->getName()]);
+    }
+
     public function getMissionByName(string $name)
     {
         return $this->missions[$name];

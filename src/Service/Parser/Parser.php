@@ -14,7 +14,7 @@ class Parser
         return new Parser();
     }
 
-    public function __invoke(string $environment): MissionCollection
+    public function read(string $environment): MissionCollection
     {
         $missionCollection = MissionCollection::create();
         $missionData = file_get_contents($this->filePath);
