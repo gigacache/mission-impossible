@@ -26,4 +26,21 @@ class Mission extends Command
             $output->writeln($mission->getName());
         }
     }
+
+    public function print(OutputInterface $output, $data)
+    {
+        $output->writeln($data);
+    }
+
+    public function sortEnvironment(string $environment): string
+    {
+        switch ($environment) {
+            case ('staging'):
+                return 'staging';
+            case ('production'):
+                return 'production';
+            default:
+                return 'all';
+        }
+    }
 }

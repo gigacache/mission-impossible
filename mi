@@ -6,11 +6,17 @@ require __DIR__ . '/vendor/autoload.php';
 use Mission\Impossible\Command\GetMissions;
 use Mission\Impossible\Command\NextMissions;
 use Mission\Impossible\Command\PrevMissions;
+use Mission\Impossible\Command\GetMissionsByCommand;
+use Mission\Impossible\Command\GetMissionsByEvent;
+use Mission\Impossible\Command\GetMissionsByStatus;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
 $application->add(new GetMissions());
 $application->add(new NextMissions());
 $application->add(new PrevMissions());
+$application->add(new GetMissionsByCommand());
+$application->add(new GetMissionsByEvent());
+$application->add(new GetMissionsByStatus());
 
 $application->run();
