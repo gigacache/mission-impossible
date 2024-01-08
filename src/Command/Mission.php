@@ -22,9 +22,13 @@ class Mission extends Command
 
     public function printMissions(MissionCollection $missionCollection, OutputInterface $output)
     {
-        foreach ($missionCollection->getItems() as $mission) {
-            $output->writeln($mission->getName());
+        $missions = $missionCollection->getItems();
+        if (!count($missions) === 0) {
+            foreach ($missionCollection->getItems() as $mission) {
+                $output->writeln($mission->getName());
+            }
         }
+        $output->writeln('No missions found');
     }
 
     public function print(OutputInterface $output, $data)
@@ -32,7 +36,7 @@ class Mission extends Command
         $output->writeln($data);
     }
 
-    public function sortEnvironment(string $environment): string
+    public function sortEnvironment(mixed $environment): string
     {
         switch ($environment) {
             case ('staging'):
@@ -43,4 +47,5 @@ class Mission extends Command
                 return 'all';
         }
     }
+
 }
