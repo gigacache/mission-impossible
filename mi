@@ -21,6 +21,8 @@ $container->register('mission', 'Mission')
     ->addArgument(new Reference('parser'))
     ->addArgument(new Reference('sorter'));
 
+$container->compile();
+
 $application = new Application();
 $application->add(new GetMissions($container->get('parser'),$container->get('sorter')));
 $application->add(new NextMissions($container->get('parser'),$container->get('sorter')));
