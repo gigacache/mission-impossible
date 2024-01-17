@@ -10,13 +10,22 @@ use Mission\Impossible\Command\GetMissionsByCommand;
 use Mission\Impossible\Command\GetMissionsByEvent;
 use Mission\Impossible\Command\GetMissionsByStatus;
 use Symfony\Component\Console\Application;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
+
+$container = new ContainerBuilder();
+$container->register('parser', 'Parser');
+$container->register('sorter', 'Sorter');
+
+$container->register('mission', 'Mission')
+    ->addArgument(new Reference('parser'))
+    ->addArgument(new Reference('sorter'));
 
 $application = new Application();
-$application->add(new GetMissions());
-$application->add(new NextMissions());
-$application->add(new PrevMissions());
-$application->add(new GetMissionsByCommand());
-$application->add(new GetMissionsByEvent());
-$application->add(new GetMissionsByStatus());
-
+$application->add(new GetMissions($container->get('parser'),$container->get('sorter')));
+$application->add(new NextMissions($container->get('parser'),$container->get('sorter')));
+$application->add(new PrevMissions($container->get('parser'),$container->get('sorter')));
+$application->add(new GetMissionsByCommand($container->get('parser'),$container->get('sorter')));
+$application->add(new GetMissionsByEvent($container->get('parser'),$container->get('sorter')));
+$application->add(new GetMissionsByStatus($container->get('parser'),$container->get('sorter')));
 $application->run();

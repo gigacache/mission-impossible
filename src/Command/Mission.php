@@ -13,10 +13,10 @@ class Mission extends Command
     protected Parser $parser;
     protected Sorter $sorter;
 
-    public function __construct()
+    public function __construct(Parser $parser, Sorter $sorter)
     {
-        $this->parser = Parser::create();
-        $this->sorter = Sorter::create();
+        $this->parser = $parser;
+        $this->sorter = $sorter;
         parent::__construct();
     }
 
