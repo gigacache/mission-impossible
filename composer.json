@@ -1,4 +1,14 @@
 {
+    "license": "MIT License",
+    "authors": [
+      {
+        "name": "gigaache",
+        "email": ""
+      }
+    ],
+    "name": "gigacache/mission-impossible",
+    "description": "A Symfony cli tool to quickly and efficiently track missions from a json file. Built for a custom event-driven middleware system.",
+    "type": "library",
     "require": {
         "php": ">=8.0",
         "symfony/console": "^7.0",
