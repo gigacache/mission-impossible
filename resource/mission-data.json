@@ -70,5 +70,45 @@
             "function": "updateWebsiteStock",
             "command": "website_application_end_point/update-stock"
         }
+    ],
+    "staging": [
+        {
+            "name": "Data Lake: Read Application Item To Stock Api",
+            "status": "ENABLED",
+            "event": "application_item_datalake[saveItem]",
+            "function": "readApplicationItemToStockApi",
+            "command": "stock_application_end_point/add-stock"
+        },
+        {
+            "name": "Data Lake: Read Application Item To Pim Api",
+            "status": "ENABLED",
+            "event": "application_item_datalake[saveItem]",
+            "function": "readApplicationItemToPimApi",
+            "command": "pim_application_end_point/save-item"
+        },
+        {
+            "name": "Data Lake: Read Application Item To Marketing Insights",
+            "status": "ENABLED",
+            "event": "application_item_datalake[saveItem]",
+            "function": "readApplicationItemToMarketingInsights",
+            "command": "marketing_application_end_point/dump-sftp"
+        },
+        {
+            "name": "Stock Api: Save Stock To Supplier",
+            "status": "ENABLED",
+            "event": "stock_application_end_point/add-stock",
+            "function": "saveStockToSupplier",
+            "command": "supplier_application_end_point/update-stock"
+        }
+    ],
+    "dev": [
+        {
+            "name": "Stock Api: Save Stock To Supplier",
+            "status": "ENABLED",
+            "event": "stock_application_end_point/add-stock",
+            "function": "saveStockToSupplier",
+            "command": "supplier_application_end_point/update-stock"
+        }
     ]
+
 }
