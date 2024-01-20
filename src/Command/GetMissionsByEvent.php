@@ -23,7 +23,7 @@ class GetMissionsByEvent extends Mission
             ->addArgument('eventInput', InputArgument::REQUIRED, 'enter the event name')
             ->setCode(function (InputInterface $input, OutputInterface $output): int {
                 $currentMissions = $this->parser->read('all');
-                $sortedMissions = $this->sorter->search($currentMissions, 'event', $input->getArgument('eventInput'));
+                $sortedMissions = $this->sorter->search('event', $input->getArgument('eventInput'));
                 $this->printMissions($sortedMissions, $output);
                 return Command::SUCCESS;
             });

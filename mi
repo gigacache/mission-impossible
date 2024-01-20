@@ -10,30 +10,30 @@ use Mission\Impossible\Command\GetMissionsByCommand;
 use Mission\Impossible\Command\GetMissionsByEvent;
 use Mission\Impossible\Command\GetMissionsByStatus;
 use Mission\Impossible\Command\Mission;
+use Mission\Impossible\Model\MissionCollection;
 use Symfony\Component\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Mission\Impossible\Service\Parser\Parser;
 use Mission\Impossible\Service\Sorter\Sorter;
 
-
+$application = new Application();
 $container = new ContainerBuilder();
 
-$container->register(Parser::class, Parser::class);
-$container->register(Sorter::class, Sorter::class);
-
+$container->register(MissionCollection::class, MissionCollection::class);
+$container->register(Parser::class, Parser::class)
+    ->addArgument(new Reference(MissionCollection::class));
+$container->register(Sorter::class, Sorter::class)
+    ->addArgument(new Reference(MissionCollection::class));
 $container->register(Mission::class, Mission::class)
     ->addArgument(new Reference(Parser::class))
     ->addArgument(new Reference(Sorter::class));
 
-//$container->compile();
+$application->add(new GetMissions($container->get(Parser::class), $container->get(Sorter::class)));
+$application->add(new NextMissions($container->get(Parser::class), $container->get(Sorter::class)));
+$application->add(new PrevMissions($container->get(Parser::class), $container->get(Sorter::class)));
+$application->add(new GetMissionsByCommand($container->get(Parser::class), $container->get(Sorter::class)));
+$application->add(new GetMissionsByEvent($container->get(Parser::class), $container->get(Sorter::class)));
+$application->add(new GetMissionsByStatus($container->get(Parser::class), $container->get(Sorter::class)));
 
-$application = new Application();
-
-$application->add(new GetMissions($container->get(Parser::class),$container->get(Sorter::class)));
-$application->add(new NextMissions($container->get(Parser::class),$container->get(Sorter::class)));
-$application->add(new PrevMissions($container->get(Parser::class),$container->get(Sorter::class)));
-$application->add(new GetMissionsByCommand($container->get(Parser::class),$container->get(Sorter::class)));
-$application->add(new GetMissionsByEvent($container->get(Parser::class),$container->get(Sorter::class)));
-$application->add(new GetMissionsByStatus($container->get(Parser::class),$container->get(Sorter::class)));
 $application->run();

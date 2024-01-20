@@ -5,12 +5,7 @@ namespace Mission\Impossible\Model;
 class MissionCollection
 {
     protected array $missions = [];
-
-    public static function create()
-    {
-        return new MissionCollection();
-    }
-
+    
     public function add(Mission $mission)
     {
         $this->missions[$mission->getName()] = $mission;

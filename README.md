@@ -8,6 +8,7 @@ A Symfony cli tool to quickly and efficiently track `missions` from a `json file
 Add to Bash profile
 ```
 ```
+
 Install composer
 ```
 make install
@@ -20,9 +21,9 @@ make run-tests
 
 ## Commands
 
-Get All Missions In Project
+Get missions in project by environment
 ```
- ./mi get::missions
+ ./mi get::missions <environment optional, default all> 
 ```
 Get missions triggered by this mission
 ```

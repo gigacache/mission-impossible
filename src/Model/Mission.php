@@ -10,10 +10,6 @@ class Mission
     protected string $command;
     protected string $function;
 
-    public static function create(){
-        return new Mission();
-    }
-
     public static function createFromJson(array $json): Mission
     {
         $mission = new Mission();

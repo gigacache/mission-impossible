@@ -10,8 +10,11 @@ use Mission\Impossible\Service\Sorter\Sorter;
 
 class Mission extends Command
 {
+    protected MissionCollection $missionCollection;
+    protected OutputInterface $outputInterface;
     protected Parser $parser;
     protected Sorter $sorter;
+    protected string|null $environment;
 
     public function __construct(Parser $parser, Sorter $sorter)
     {
@@ -20,32 +23,26 @@ class Mission extends Command
         parent::__construct();
     }
 
-    public function printMissions(MissionCollection $missionCollection, OutputInterface $output)
+    public function printMissions()
     {
-        $missions = $missionCollection->getItems();
-        if (!count($missions) === 0) {
-            foreach ($missionCollection->getItems() as $mission) {
-                $output->writeln($mission->getName());
+        if (count($this->missionCollection->getItems()) != 0) {
+            foreach ($this->missionCollection->getItems() as $mission) {
+                $this->outputInterface->writeln($mission->getName());
             }
-        }
-        $output->writeln('No missions found');
-    }
-
-    public function print(OutputInterface $output, $data)
-    {
-        $output->writeln($data);
-    }
-
-    public function sortEnvironment(mixed $environment): string
-    {
-        switch ($environment) {
-            case ('staging'):
-                return 'staging';
-            case ('production'):
-                return 'production';
-            default:
-                return 'all';
+        } else {
+            $this->outputInterface->writeln('No missions found');
         }
     }
 
+    public function print($data)
+    {
+        $this->outputInterface->writeln($data);
+    }
+
+    public function checkEnvironment()
+    {
+        if (is_null($this->environment)) {
+            $this->environment = 'all';
+        }
+    }
 }

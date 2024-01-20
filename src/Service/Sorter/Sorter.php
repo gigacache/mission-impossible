@@ -3,48 +3,59 @@
 namespace Mission\Impossible\Service\Sorter;
 
 use Mission\Impossible\Model\MissionCollection;
+use Mission\Impossible\Service\Service;
 
-class Sorter
+class Sorter extends Service
 {
     protected array $sortedMissions = [];
 
-    public static function create()
+    public function __construct(MissionCollection $missionCollection)
     {
-        return new Sorter();
+        parent::__construct($missionCollection);
     }
 
-    public function search(MissionCollection $missionCollection, string $param, string $data): MissionCollection
+    public function search(string $param, string $data)
     {
-        $currentMissions = $missionCollection->getItems();
-        foreach ($currentMissions as $mission) {
+        foreach ($this->missionCollection->getItems() as $mission) {
             switch ($param) {
                 case 'name':
                     if ($mission->getName() != $data) {
-                        $missionCollection->remove($mission);
+                        $this->missionCollection->remove($mission);
                     }
                     break;
                 case 'status';
                     if ($mission->getStatus() != $data) {
-                        $missionCollection->remove($mission);
+                        $this->missionCollection->remove($mission);
                     }
                     break;
                 case 'event':
                     if ($mission->getEvent() != $data) {
-                        $missionCollection->remove($mission);
+                        $this->missionCollection->remove($mission);
                     }
                     break;
                 case 'function':
                     if ($mission->getFunction() != $data) {
-                        $missionCollection->remove($mission);
+                        $this->missionCollection->remove($mission);
                     }
                     break;
                 case 'command':
                     if ($mission->getCommand() != $data) {
-                        $missionCollection->remove($mission);
+                        $this->missionCollection->remove($mission);
                     }
                     break;
             }
         }
-        return $missionCollection;
+    }
+
+    public function environment(mixed $environment): string
+    {
+        switch ($environment) {
+            case ('staging'):
+                return 'staging';
+            case ('production'):
+                return 'production';
+            default:
+                return 'all';
+        }
     }
 }
