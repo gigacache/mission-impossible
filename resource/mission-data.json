@@ -103,7 +103,7 @@
     ],
     "dev": [
         {
-            "name": "Stock Api: Save Stock To Supplier",
+            "name": "Stock Api: Save Stock To Supplier Dev",
             "status": "ENABLED",
             "event": "stock_application_end_point/add-stock",
             "function": "saveStockToSupplier",

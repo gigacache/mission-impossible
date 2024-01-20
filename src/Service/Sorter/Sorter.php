@@ -14,7 +14,7 @@ class Sorter extends Service
         parent::__construct($missionCollection);
     }
 
-    public function search(string $param, string $data)
+    public function sortMissionCollection(string $param, string $data)
     {
         foreach ($this->missionCollection->getItems() as $mission) {
             switch ($param) {

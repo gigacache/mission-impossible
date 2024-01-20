@@ -23,10 +23,12 @@ class GetMissionsByCommand extends Mission
             ->addArgument('commandInput', InputArgument::REQUIRED, 'enter the command name')
             ->addArgument('environment', InputArgument::OPTIONAL, 'enter the command name')
             ->setCode(function (InputInterface $input, OutputInterface $output): int {
-                $environment = $this->sortEnvironment($input->getArgument('environment'));
-                $currentMissions = $this->parser->read($environment);
-                $sortedMissions = $this->sorter->search($currentMissions, 'command', $input->getArgument('commandInput'));
-                $this->printMissions($sortedMissions, $output);
+                $this->outputInterface = $output;
+                $this->environment = $input->getArgument('environment');
+                $this->checkEnvironment();
+                $this->missionCollection = $this->parser->read($this->environment);
+                $this->sorter->sortMissionCollection('command', $input->getArgument('commandInput'));
+                $this->printMissions();
                 return Command::SUCCESS;
             });
     }
