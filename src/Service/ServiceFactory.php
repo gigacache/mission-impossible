@@ -8,6 +8,11 @@ use Mission\Impossible\Service\Sorter\Sorter;
 
 class ServiceFactory
 {
+    public static function create()
+    {
+        return new ServiceFactory();
+    }
+    
     public function parser()
     {
         return new Parser(new MissionCollection());

@@ -22,5 +22,10 @@
             "Mission\\Impossible\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+          "Mission\\Impossible\\Test\\": "test"
+        }
+    },
     "minimum-stability": "dev"
 }

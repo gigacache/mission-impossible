@@ -19,10 +19,12 @@ class GetMissionsByStatus extends Mission
         $this->setName('get:missions:enabled')
             ->setDescription('get missions by command')
             ->setCode(function (InputInterface $input, OutputInterface $output): int {
-                $currentMissions = $this->parser->read('all');
-                $sortedMissions = $this->sorter->search($currentMissions, 'status', 'ENABLED');
-                $this->print($output, 'Missions Enabled: ' . count($sortedMissions->getItems()));
-                $this->printMissions($sortedMissions, $output);
+                $this->outputInterface = $output;
+                $this->checkEnvironment();
+                $this->missionCollection = $this->parser->read($this->environment);
+                $this->sorter->sortMissionCollection('status', 'ENABLED');
+                $this->print('Missions Enabled: ' . count($this->missionCollection->getItems()));
+                $this->printMissions();
                 return Command::SUCCESS;
             });
     }

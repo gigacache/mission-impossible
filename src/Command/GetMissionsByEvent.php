@@ -21,10 +21,14 @@ class GetMissionsByEvent extends Mission
         $this->setName('get:missions:by:event')
             ->setDescription('get missions by command')
             ->addArgument('eventInput', InputArgument::REQUIRED, 'enter the event name')
+            ->addArgument('environment', InputArgument::OPTIONAL, 'enter the environment')
             ->setCode(function (InputInterface $input, OutputInterface $output): int {
-                $currentMissions = $this->parser->read('all');
-                $sortedMissions = $this->sorter->search('event', $input->getArgument('eventInput'));
-                $this->printMissions($sortedMissions, $output);
+                $this->outputInterface = $output;
+                $this->environment = $input->getArgument('environment');
+                $this->checkEnvironment();
+                $this->missionCollection = $this->parser->read($this->environment);
+                $this->sorter->sortMissionCollection('event', $input->getArgument('eventInput'));
+                $this->printMissions();
                 return Command::SUCCESS;
             });
     }

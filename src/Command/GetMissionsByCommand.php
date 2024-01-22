@@ -21,7 +21,7 @@ class GetMissionsByCommand extends Mission
         $this->setName('get:missions:by:command')
             ->setDescription('get missions by command')
             ->addArgument('commandInput', InputArgument::REQUIRED, 'enter the command name')
-            ->addArgument('environment', InputArgument::OPTIONAL, 'enter the command name')
+            ->addArgument('environment', InputArgument::OPTIONAL, 'enter the environment')
             ->setCode(function (InputInterface $input, OutputInterface $output): int {
                 $this->outputInterface = $output;
                 $this->environment = $input->getArgument('environment');

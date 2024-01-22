@@ -20,6 +20,7 @@ class Mission extends Command
     {
         $this->parser = $parser;
         $this->sorter = $sorter;
+        $this->environment = null;
         parent::__construct();
     }
 

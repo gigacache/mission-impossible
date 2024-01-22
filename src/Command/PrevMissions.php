@@ -21,12 +21,16 @@ class PrevMissions extends Mission
         $this->setName('get:missions:prev')
             ->setDescription('gets previous missions')
             ->addArgument('mission', InputArgument::REQUIRED, 'enter the mission name')
+            ->addArgument('environment', InputArgument::OPTIONAL, 'enter the environment')
             ->setCode(function (InputInterface $input, OutputInterface $output): int {
-                $currentMissions = $this->parser->read('all');
-                $mission = $currentMissions->getItems()[$input->getArgument('mission')];
-                $sortedMissions = $this->sorter->search($currentMissions , 'command',  $mission->getEvent());
-                $this->printMissions($sortedMissions,$output);
-                return Command::SUCCESS;
+                        $this->outputInterface = $output;
+                        $this->environment = $input->getArgument('environment');
+                        $this->checkEnvironment();
+                        $this->missionCollection = $this->parser->read($this->environment);
+                        $mission = $this->missionCollection->getItems()[$input->getArgument('mission')];
+                        $this->sorter->sortMissionCollection('command',  $mission->getEvent());
+                        $this->printMissions();
+                        return Command::SUCCESS;
             });
     }
 }
