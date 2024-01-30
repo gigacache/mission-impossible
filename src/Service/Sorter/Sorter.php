@@ -23,7 +23,7 @@ class Sorter extends Service
                         $this->missionCollection->remove($mission);
                     }
                     break;
-                case 'status';
+                case 'status':
                     if ($mission->getStatus() != $data) {
                         $this->missionCollection->remove($mission);
                     }

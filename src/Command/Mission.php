@@ -3,10 +3,10 @@
 namespace Mission\Impossible\Command;
 
 use Mission\Impossible\Model\MissionCollection;
-use Symfony\Component\Console\Command\Command;
 use Mission\Impossible\Service\Parser\Parser;
-use Symfony\Component\Console\Output\OutputInterface;
 use Mission\Impossible\Service\Sorter\Sorter;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Mission extends Command
 {

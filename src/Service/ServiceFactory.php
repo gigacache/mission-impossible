@@ -12,7 +12,7 @@ class ServiceFactory
     {
         return new ServiceFactory();
     }
-    
+
     public function parser()
     {
         return new Parser(new MissionCollection());

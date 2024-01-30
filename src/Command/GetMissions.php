@@ -2,13 +2,12 @@
 
 namespace Mission\Impossible\Command;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
-use Mission\Impossible\Command\Mission;
 use Mission\Impossible\Service\Parser\Parser;
 use Mission\Impossible\Service\Sorter\Sorter;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class GetMissions extends Mission
 {

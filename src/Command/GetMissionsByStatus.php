@@ -2,17 +2,17 @@
 
 namespace Mission\Impossible\Command;
 
+use Mission\Impossible\Service\Parser\Parser;
+use Mission\Impossible\Service\Sorter\Sorter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Mission\Impossible\Service\Parser\Parser;
-use Mission\Impossible\Service\Sorter\Sorter;
 
 class GetMissionsByStatus extends Mission
 {
     public function __construct(Parser $parser, Sorter $sorter)
     {
-        parent::__construct($parser,$sorter);
+        parent::__construct($parser, $sorter);
     }
     protected function configure()
     {
