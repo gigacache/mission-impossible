@@ -7,6 +7,12 @@ A Symfony cli tool to quickly and efficiently track `missions` from a `json file
 
 Add to Bash profile
 ```
+cd ~
+git clone https://github.com/gigacache/mission-impossible.git .mission-impossible
+cd ~/.mission-impossible
+composer update
+export PATH=~/.mission-impossible:$PATH
+source ~/.bash_profile
 ```
 
 Install composer
